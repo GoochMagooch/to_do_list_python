@@ -37,3 +37,4 @@ Systems Design Consultancy LLC
 ## notes
 - Make sure each function persists until 'back' is entered, or a valid choice is entered
 - Check for duplicate check marks on completed tasks
+- Add options to end function loops
