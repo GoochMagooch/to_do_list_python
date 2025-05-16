@@ -12,25 +12,38 @@ def add_task():
     print("Your task has been added!")
 
 def remove_task():
-    pass
+    print("Your Tasks:")
+    task_num = 1
+    numbered_tasks = []
+    for i in tasks:
+        numbered_tasks.append(f"{task_num}. {i}")
+        print(numbered_tasks[-1])
+        task_num += 1
+    # Figure out why int input converted to str passes the input as an index
+    task_remove = input("Choose the task to remove by number: ")
+    for i in range(len(numbered_tasks)):
+        if task_remove == numbered_tasks[i][0]:
+            print(f"{tasks[i]} has been removed from your task list!")
+            tasks.remove(tasks[i])
 
 def list_tasks():
+    print("Your Tasks:")
     task_num = 1
     for i in tasks:
         print(f"{task_num}. {i}")
         task_num += 1
 
 def check_off_task():
-    clear_screen()
     task_num = 1
     numbered_tasks = []
     for i in tasks:
         numbered_tasks.append(f"{task_num}. {i}")
         task_num += 1
         print(numbered_tasks[-1])
-    task_checkoff = int(input("Choose the task to checkoff by number: "))
+    task_checkoff = input("Choose the task to checkoff by number: ")
     for i in range(len(numbered_tasks)):
-        if str(task_checkoff) == numbered_tasks[i][0]:
+        if task_checkoff == numbered_tasks[i][0]:
+            print(f"Congratulations on completing your {tasks[i]} task!")
             tasks[i] = tasks[i] + " ✅"
 
 def display_menu(no_clear):
@@ -71,10 +84,16 @@ while True:
         try:
             int_choice = int(choice)
             if int_choice == 1:
+                clear_screen()
                 add_task()
             elif int_choice == 2:
+                clear_screen()
                 check_off_task()
+            elif int_choice == 3:
+                clear_screen()
+                remove_task()
             elif int_choice == 4:
+                clear_screen()
                 list_tasks()
             else:
                 clear_screen()
