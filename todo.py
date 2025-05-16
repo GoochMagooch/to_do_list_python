@@ -3,6 +3,21 @@ import os
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def display_menu(no_clear):
+    menu = ["Press 1 to add task",
+            "Press 2 check off task",
+            "Press 3 to remove task",
+            "Press 4 to list tasks",
+            "Type \"Menu\" to display menu",
+            "Type \"Exit\" to exit app", ""]
+    if no_clear == 1:
+        for i in menu:
+            print(i)
+    else:
+        clear_screen()
+        for i in menu:
+            print(i)
+
 tasks = []
 def add_task():
     clear_screen()
@@ -26,17 +41,21 @@ def remove_task():
                 task_num += 1
                 # Placing the print statement after the remove method removed an item in tasks
                 # before the appropriate print statement could be run, resulting in indexing issues
-            task_remove = input("Choose the task to remove by number: ")
-            for i in range(len(numbered_tasks)):
-                if task_remove == numbered_tasks[i][0]:
-                    clear_screen()
-                    print(f"'{tasks[i]}' has been removed from your task list!")
-                    tasks.remove(tasks[i])
-                    loop = False
-                else:
-                    clear_screen()
-                    print("Invalid choice, choose a task number!")
-                    pass
+            task_remove = input("Choose the task to remove by number or \"back\": ")
+            if task_remove.lower() == "back":
+                display_menu(0)
+                loop = False
+            else:
+                for i in range(len(numbered_tasks)):
+                    if task_remove == numbered_tasks[i][0]:
+                        clear_screen()
+                        print(f"'{tasks[i]}' has been removed from your task list!")
+                        tasks.remove(tasks[i])
+                        loop = False
+                    else:
+                        clear_screen()
+                        print("Invalid choice, choose a task number!")
+                        pass
                     
 def list_tasks():
     if len(tasks) < 1:
@@ -61,37 +80,26 @@ def check_off_task():
                 numbered_tasks.append(f"{task_num}. {i}")
                 print(numbered_tasks[-1])
                 task_num += 1
-            task_checkoff = input("Choose the task to checkoff by number: ")
-            for i in range(len(numbered_tasks)):
-                if task_checkoff == numbered_tasks[i][0]:
-                    if "✅" in tasks[i]:
-                        clear_screen()
-                        print("This task is already checked off, great job!")
-                        pass
+            task_checkoff = input("Choose the task to remove by number or \"back\": ")
+            if task_checkoff.lower() == "back":
+                display_menu(0)
+                loop = False
+            else:
+                for i in range(len(numbered_tasks)):
+                    if task_checkoff == numbered_tasks[i][0]:
+                        if "✅" in tasks[i]:
+                            clear_screen()
+                            print("This task is already checked off, great job!")
+                            pass
+                        else:
+                            clear_screen()
+                            print(f"Congratulations on completing your '{tasks[i]}' task!")
+                            tasks[i] = tasks[i] + " ✅"
+                            loop = False
                     else:
                         clear_screen()
-                        print(f"Congratulations on completing your '{tasks[i]}' task!")
-                        tasks[i] = tasks[i] + " ✅"
-                        loop = False
-                else:
-                    clear_screen()
-                    print("Invalid choice, choose a task number!")
-                    pass
-
-def display_menu(no_clear):
-    menu = ["Press 1 to add task",
-            "Press 2 check off task",
-            "Press 3 to remove task",
-            "Press 4 to list tasks",
-            "Type \"Menu\" to display menu",
-            "Type \"Exit\" to exit app", ""]
-    if no_clear == 1:
-        for i in menu:
-            print(i)
-    else:
-        clear_screen()
-        for i in menu:
-            print(i)
+                        print("Invalid choice, choose a task number!")
+                        pass
 
 print("Welcome To Your Todo List!")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~")
