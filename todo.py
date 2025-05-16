@@ -20,6 +20,8 @@ def remove_task():
         print(numbered_tasks[-1])
         task_num += 1
     # Figure out why int input converted to str passes the input as an index
+    # Answer: Placing the print statement after the remove method removed an item in tasks
+    # before the appropriate print statement could be run, resulting in indexing issues
     task_remove = input("Choose the task to remove by number: ")
     for i in range(len(numbered_tasks)):
         if task_remove == numbered_tasks[i][0]:
