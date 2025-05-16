@@ -23,7 +23,8 @@ def remove_task():
     task_remove = input("Choose the task to remove by number: ")
     for i in range(len(numbered_tasks)):
         if task_remove == numbered_tasks[i][0]:
-            print(f"{tasks[i]} has been removed from your task list!")
+            clear_screen()
+            print(f"'{tasks[i]}' has been removed from your task list!")
             tasks.remove(tasks[i])
 
 def list_tasks():
@@ -43,7 +44,8 @@ def check_off_task():
     task_checkoff = input("Choose the task to checkoff by number: ")
     for i in range(len(numbered_tasks)):
         if task_checkoff == numbered_tasks[i][0]:
-            print(f"Congratulations on completing your {tasks[i]} task!")
+            clear_screen()
+            print(f"Congratulations on completing your '{tasks[i]}' task!")
             tasks[i] = tasks[i] + " ✅"
 
 def display_menu(no_clear):
