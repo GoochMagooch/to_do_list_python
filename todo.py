@@ -19,28 +19,25 @@ def remove_task():
         while loop:
             print("Your Tasks:")
             task_num = 1
-            nums = []
             numbered_tasks = []
             for i in tasks:
                 numbered_tasks.append(f"{task_num}. {i}")
-                nums.append(numbered_tasks[-1][0])
                 print(numbered_tasks[-1])
                 task_num += 1
                 # Placing the print statement after the remove method removed an item in tasks
                 # before the appropriate print statement could be run, resulting in indexing issues
-                task_remove = input("Choose the task to remove by number: ")
-                if not task_remove in nums:
+            task_remove = input("Choose the task to remove by number: ")
+            for i in range(len(numbered_tasks)):
+                if task_remove == numbered_tasks[i][0]:
+                    clear_screen()
+                    print(f"'{tasks[i]}' has been removed from your task list!")
+                    tasks.remove(tasks[i])
+                    loop = False
+                else:
                     clear_screen()
                     print("Invalid choice, choose a task number!")
                     pass
-                else:
-                    for i in range(len(numbered_tasks)):
-                        if task_remove == numbered_tasks[i][0]:
-                            clear_screen()
-                            print(f"'{tasks[i]}' has been removed from your task list!")
-                            tasks.remove(tasks[i])
-                            loop = False
-
+                    
 def list_tasks():
     if len(tasks) < 1:
         print("No tasks to list! Add some by pressing 1")
@@ -57,6 +54,7 @@ def check_off_task():
         print("No tasks to check off! Add some by pressing 1")
     else:
         while loop:
+            print("Tasks:")
             task_num = 1
             numbered_tasks = []
             for i in tasks:
