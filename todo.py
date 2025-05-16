@@ -12,22 +12,22 @@ def add_task():
     print("Your task has been added!")
 
 def remove_task():
+    loop = True
     if len(tasks) < 1:
         print("No tasks to remove! Add some by pressing 1")
     else:
-        print("Your Tasks:")
-        task_num = 1
-        nums = []
-        numbered_tasks = []
-        for i in tasks:
-            numbered_tasks.append(f"{task_num}. {i}")
-            nums.append(numbered_tasks[-1][0])
-            print(numbered_tasks[-1])
-            task_num += 1
-            # Figure out why int input converted to str passes the input as an index
-            # Answer: Placing the print statement after the remove method removed an item in tasks
-            # before the appropriate print statement could be run, resulting in indexing issues
-            while True:
+        while loop:
+            print("Your Tasks:")
+            task_num = 1
+            nums = []
+            numbered_tasks = []
+            for i in tasks:
+                numbered_tasks.append(f"{task_num}. {i}")
+                nums.append(numbered_tasks[-1][0])
+                print(numbered_tasks[-1])
+                task_num += 1
+                # Placing the print statement after the remove method removed an item in tasks
+                # before the appropriate print statement could be run, resulting in indexing issues
                 task_remove = input("Choose the task to remove by number: ")
                 if not task_remove in nums:
                     clear_screen()
@@ -39,7 +39,7 @@ def remove_task():
                             clear_screen()
                             print(f"'{tasks[i]}' has been removed from your task list!")
                             tasks.remove(tasks[i])
-                            break
+                            loop = False
 
 def list_tasks():
     if len(tasks) < 1:
@@ -52,10 +52,11 @@ def list_tasks():
             task_num += 1
 
 def check_off_task():
+    loop = True
     if len(tasks) < 1:
         print("No tasks to check off! Add some by pressing 1")
     else:
-        while True:
+        while loop:
             task_num = 1
             nums = []
             numbered_tasks = []
@@ -68,13 +69,14 @@ def check_off_task():
             if not task_checkoff in nums:
                 clear_screen()
                 print("Invalid choice, choose a task number!")
+                pass
             else:
                 for i in range(len(numbered_tasks)):
                     if task_checkoff == numbered_tasks[i][0]:
                         clear_screen()
                         print(f"Congratulations on completing your '{tasks[i]}' task!")
                         tasks[i] = tasks[i] + " ✅"
-            break
+                        loop = False
 
 def display_menu(no_clear):
     menu = ["Press 1 to add task",
