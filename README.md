@@ -1,48 +1,35 @@
-🧾 Simple To-Do List Manager (CLI Tool)
-You’ve been asked to build a lightweight terminal-based to-do list app that lets a user manage their tasks efficiently.
+Hi Charles,
 
-🔧 Requirements:
-✅ Data Structure:
-Use a dict to store tasks:
+As part of our ongoing effort to improve utility tools for internal use, I’d like you to take ownership of a new scripting task.
 
-Keys = Task names (strings)
+Objective
+Build a simple, command-line To-Do List Manager that allows users to add, view, complete, and remove tasks. The goal is to provide a lightweight and intuitive tool for quick task tracking.
 
-Values = Booleans (False = incomplete, True = complete)
+Requirements
 
-✅ Features:
-Add a Task
+- Data Structure:
+    Use a dictionary where:
+      - Keys represent task names (strings)
+      - Values are booleans: False for incomplete, True for complete
 
-Ask the user for a task name.
+- Core Features:
+    1. Add a Task – Prompt the user to enter a task name and store it as incomplete.
+    2. Mark as Complete – Allow the user to mark any existing task as complete.
+    3. View Tasks – Display all tasks with clear indicators of completion status.
+    4. Remove a Task – Remove a task based on its name.
+    5. Exit – Include a confirmation step before terminating the program.
 
-Add it to the dictionary as incomplete.
+- Additional Parameters:
+    Input validation (e.g., prevent empty task names).
+    Graceful handling of nonexistent tasks or duplicates.
+    Clear output formatting (e.g., ✓ for complete, ✗ for incomplete).
+    Maintain consistent user experience in the CLI.
 
-Mark Task as Complete
+You do not need to include any file-saving or persistence in this version — keep it in-memory for now. Focus on clean logic, modular structure, and user-friendly feedback.
 
-Ask the user to enter the task name.
+Let me know if anything is unclear or if you'd like to walk through the requirements together. Looking forward to your implementation.
 
-Mark it as complete if it exists.
-
-View Tasks
-
-List all tasks.
-
-Show whether each one is complete or incomplete.
-
-Remove a Task
-
-Ask the user for the task name.
-
-Remove it from the list.
-
-Exit Program
-
-Graceful exit with confirmation.
-
-💡 Additional Requirements:
-Handle duplicates gracefully.
-
-If user enters a task that doesn't exist, print a helpful message.
-
-Validate input types where appropriate.
-
-Format output clearly (✓ for complete, ✗ for incomplete).
+Best,
+Kali
+Team Lead, Internal Tools Development
+Systems Design Consultancy LLC
