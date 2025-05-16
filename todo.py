@@ -58,25 +58,27 @@ def check_off_task():
     else:
         while loop:
             task_num = 1
-            nums = []
             numbered_tasks = []
             for i in tasks:
                 numbered_tasks.append(f"{task_num}. {i}")
-                nums.append(numbered_tasks[-1][0])
                 print(numbered_tasks[-1])
                 task_num += 1
             task_checkoff = input("Choose the task to checkoff by number: ")
-            if not task_checkoff in nums:
-                clear_screen()
-                print("Invalid choice, choose a task number!")
-                pass
-            else:
-                for i in range(len(numbered_tasks)):
-                    if task_checkoff == numbered_tasks[i][0]:
+            for i in range(len(numbered_tasks)):
+                if task_checkoff == numbered_tasks[i][0]:
+                    if "✅" in tasks[i]:
+                        clear_screen()
+                        print("This task is already checked off, great job!")
+                        pass
+                    else:
                         clear_screen()
                         print(f"Congratulations on completing your '{tasks[i]}' task!")
                         tasks[i] = tasks[i] + " ✅"
                         loop = False
+                else:
+                    clear_screen()
+                    print("Invalid choice, choose a task number!")
+                    pass
 
 def display_menu(no_clear):
     menu = ["Press 1 to add task",
