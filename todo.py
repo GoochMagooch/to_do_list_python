@@ -21,10 +21,20 @@ def display_menu(no_clear):
 tasks = []
 def add_task():
     clear_screen()
-    task = input("Enter your task: ")
-    tasks.append(task)
-    clear_screen()
-    print("Your task has been added!")
+    while True:
+        task = input("Enter your task or \"back\": ")
+        if task.lower() == "back":
+            clear_screen()
+            break
+        elif task in tasks:
+            clear_screen()
+            print(f"Error: '{task}' is already a task!")
+            pass
+        else:
+            tasks.append(task)
+            clear_screen()
+            print("Your task has been added!")
+            break
 
 def remove_task():
     loop = True
@@ -80,7 +90,7 @@ def check_off_task():
                 numbered_tasks.append(f"{task_num}. {i}")
                 print(numbered_tasks[-1])
                 task_num += 1
-            task_checkoff = input("Choose the task to remove by number or \"back\": ")
+            task_checkoff = input("Choose the task to checkoff by number or \"back\": ")
             if task_checkoff.lower() == "back":
                 display_menu(0)
                 loop = False
