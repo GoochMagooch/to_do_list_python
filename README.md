@@ -35,6 +35,9 @@ Team Lead, Internal Tools Development
 Systems Design Consultancy LLC
 
 ## notes
-- Make sure each function persists until 'back' is entered, or a valid choice is entered
+- Make sure each function persists until 'back' is entered, or a valid choice is entered ✅
 - Check for duplicate check marks on completed tasks
-- Add options to end function loops
+- Check for duplicate tasks being added ✅
+
+## errors
+- logical error when using check_off_task and checking off the first item in tasks ✅
