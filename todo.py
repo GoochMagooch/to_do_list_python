@@ -90,26 +90,34 @@ def check_off_task():
                 numbered_tasks.append(f"{task_num}. {i}")
                 print(numbered_tasks[-1])
                 task_num += 1
+            nums = []
+            for i in numbered_tasks:
+                nums.append(i[0])
             task_checkoff = input("Choose the task to checkoff by number or \"back\": ")
             if task_checkoff.lower() == "back":
                 display_menu(0)
                 loop = False
-            else:
+            elif task_checkoff in nums:
                 for i in range(len(numbered_tasks)):
                     if task_checkoff == numbered_tasks[i][0]:
                         if "✅" in tasks[i]:
                             clear_screen()
                             print("This task is already checked off, great job!")
                             pass
-                        else:
+                        elif not "✅" in tasks[i]:
                             clear_screen()
                             print(f"Congratulations on completing your '{tasks[i]}' task!")
                             tasks[i] = tasks[i] + " ✅"
                             loop = False
-                    else:
-                        clear_screen()
-                        print("Invalid choice, choose a task number!")
-                        pass
+                        else:
+                            clear_screen()
+                            print("Invalid choice, choose a task number!")
+                            pass
+            else:
+                clear_screen()
+                print("Invalid choice, choose a task number!")
+                pass
+
 
 print("Welcome To Your Todo List!")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~")
