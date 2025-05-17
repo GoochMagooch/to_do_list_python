@@ -1,3 +1,4 @@
+## NEW TOOL EMAIL
 Hi Charles,
 
 As part of our ongoing effort to improve utility tools for internal use, I’d like you to take ownership of a new scripting task.
@@ -34,9 +35,10 @@ Kali
 Team Lead, Internal Tools Development
 Systems Design Consultancy LLC
 
-## notes
+NOTES
 - Make sure each function persists until 'back' is entered, or a valid choice is entered ✅
 - Check for duplicate tasks being added ✅
-
-## errors
+ERRORS
 - logical error when using check_off_task and checking off the first item in tasks ✅
+
+# FILE SAVING FEATURE
