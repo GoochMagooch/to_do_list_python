@@ -16,7 +16,7 @@ def display_menu():
 def add_task():
 
     with open("todo_list.csv", "r") as x:
-        y = x.read().split("\n")
+        y = x.readlines()
     
     tasks = []
     for i in range(len(y)):
@@ -33,7 +33,7 @@ def add_task():
             print(f"Error: '{task}' is already a task!")
             pass
         else:
-            tasks.append(task)
+            tasks.append(task + "\n")
             clear_screen()
             print("Your task has been added!")
             break
@@ -73,17 +73,18 @@ def remove_task():
                         clear_screen()
                         print("Invalid choice, choose a task number!")
                         pass
-                    
+'''
+      
 def list_tasks():
-    if len(tasks) < 1:
-        print("No tasks to list! Add some by pressing 1")
-    else:
-        print("Your Tasks:")
-        task_num = 1
-        for i in tasks:
-            print(f"{task_num}. {i}")
-            task_num += 1
+    with open("todo_list.csv", "r") as x:
+        y = x.read().split("\n")
+    for i in range(len(y)):
+        if y[i] == "":
+            continue
+        else:
+            print(y[i])
 
+'''
 def check_off_task():
     loop = True
     if len(tasks) < 1:
@@ -150,7 +151,7 @@ while True:
                 #remove_task()
             elif int_choice == 4:
                 clear_screen()
-                #list_tasks()
+                list_tasks()
             else:
                 clear_screen()
                 print("Choice not found...")
