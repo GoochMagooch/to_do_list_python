@@ -3,23 +3,25 @@ import os
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def display_menu(no_clear):
-    menu = ["Press 1 to add task",
-            "Press 2 check off task",
-            "Press 3 to remove task",
-            "Press 4 to list tasks",
-            "Type \"Menu\" to display menu",
-            "Type \"Exit\" to exit app", ""]
-    if no_clear == 1:
-        for i in menu:
-            print(i)
-    else:
-        clear_screen()
-        for i in menu:
-            print(i)
+def display_menu():
+    print("Welcome To Your Todo List!")
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    print("Press 1 to add task")
+    print("Press 2 check off task")
+    print("Press 3 to remove task")
+    print("Press 4 to list tasks")
+    print("Type \"Menu\" to display menu")
+    print("Type \"Exit\" to exit app\n")
 
-tasks = []
 def add_task():
+
+    with open("todo_list.csv", "r") as x:
+        y = x.read().split("\n")
+    
+    tasks = []
+    for i in range(len(y)):
+        tasks.append(y[i])
+
     clear_screen()
     while True:
         task = input("Enter your task or \"back\": ")
@@ -35,7 +37,12 @@ def add_task():
             clear_screen()
             print("Your task has been added!")
             break
+    
+    with open("todo_list.csv", "w") as x:
+        for i in range(len(tasks)):
+            x.write(tasks[i])
 
+'''
 def remove_task():
     loop = True
     if len(tasks) < 1:
@@ -118,26 +125,17 @@ def check_off_task():
                 print("Invalid choice, choose a task number!")
                 pass
 
-
-print("Welcome To Your Todo List!")
-print("~~~~~~~~~~~~~~~~~~~~~~~~~~")
-display_menu(1)
+display_menu()
+'''
 
 while True:
     choice = input("Choose an option (1 - 4), \"Exit\" or \"Menu\": ")
     if choice.lower() == "exit":
         clear_screen()
-        print("Are you sure you want to exit?")
-        exit_choice = input("Press \"Y\" or \"N\": ")
-        if exit_choice.lower() == "y":
-            clear_screen()
-            print("Exiting program...goodbye")
-            exit()
-        else:
-            clear_screen()
-            pass
+        print("Exiting program...goodbye")
+        exit()
     elif choice.lower() == "menu":
-        display_menu(0)
+        display_menu()
     else:
         try:
             int_choice = int(choice)
@@ -146,13 +144,13 @@ while True:
                 add_task()
             elif int_choice == 2:
                 clear_screen()
-                check_off_task()
+                #check_off_task()
             elif int_choice == 3:
                 clear_screen()
-                remove_task()
+                #remove_task()
             elif int_choice == 4:
                 clear_screen()
-                list_tasks()
+                #list_tasks()
             else:
                 clear_screen()
                 print("Choice not found...")
